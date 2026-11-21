@@ -6,9 +6,7 @@ license="All Rights Reserved"
 modId="quietworld"
 version="0.1.0"
 displayName="Quiet World"
-description=\x27\x27\x27
-A slow-burn, lore-heavy horror mod. Something already knows you are here.
-\x27\x27\x27
+description="A slow-burn, lore-heavy horror mod. Something already knows you are here."
 
 [[dependencies.quietworld]]
     modId="forge"

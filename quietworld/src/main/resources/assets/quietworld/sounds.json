@@ -1,0 +1,10 @@
+{
+  "static_burst": { "sounds": ["quietworld:static_burst"] },
+  "static_long":  { "sounds": ["quietworld:static_long"] },
+  "drone":        { "sounds": ["quietworld:drone"] },
+  "screech":      { "sounds": ["quietworld:screech"] },
+  "heartbeat":    { "sounds": ["quietworld:heartbeat"] },
+  "whisper":      { "sounds": ["quietworld:whisper"] },
+  "glitch":       { "sounds": ["quietworld:glitch"] },
+  "tv_off":       { "sounds": ["quietworld:tv_off"] }
+}

@@ -1,4 +1,20 @@
 {
   "entity.quietworld.watcher": "The Watcher",
-  "entity.quietworld.kosiw": "kosiw"
+  "entity.quietworld.kosiw": "kosiw",
+  "entity.quietworld.hollow": "Hollow",
+  "entity.quietworld.glitch": "Glitch",
+  "entity.quietworld.echo": "Echo",
+  "entity.quietworld.tall_one": "The Tall One",
+  "entity.quietworld.tenant": "Tenant",
+  "entity.quietworld.crawler": "Crawler",
+  "item.quietworld.codex": "Codex",
+  "item.quietworld.journal": "Journal",
+  "item.quietworld.static_radio": "Static Radio",
+  "item.quietworld.corrupted_shard": "Corrupted Shard",
+  "entity.quietworld.gazer": "Gazer",
+  "entity.quietworld.static_moth": "Static Moth",
+  "entity.quietworld.lamplighter": "Lamplighter",
+  "entity.quietworld.archivist": "Archivist",
+  "entity.quietworld.wretch": "Wretch",
+  "entity.quietworld.lost_child": "Lost Child"
 }

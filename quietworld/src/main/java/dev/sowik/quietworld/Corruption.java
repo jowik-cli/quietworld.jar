@@ -27,7 +27,13 @@ public final class Corruption {
         "it learned your walk",
         "nothing here is old",
         "keep the fire lit",
-        "k was here before the sky"
+        "k was here before the sky",
+        "herobrine has a lawyer now",
+        "this is not wonderland.jar (legal asked)",
+        "the broken script needs a comma",
+        "entity 303 sends regards",
+        "null is not a valid name",
+        "the cave dweller knocked twice"
     };
 
     private static final String[] TITLES = {
@@ -76,6 +82,7 @@ public final class Corruption {
             pages.add(StringTag.valueOf(Component.Serializer.toJson(Component.literal(page.toString()))));
         }
         tag.put("pages", pages);
+        tag.putString("qw_id", "frag:" + Integer.toHexString(pages.toString().hashCode()));
         return stack;
     }
 }

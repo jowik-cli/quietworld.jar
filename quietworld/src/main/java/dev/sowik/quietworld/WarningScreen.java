@@ -11,8 +11,10 @@ public class WarningScreen extends Screen {
     private static final String[] LINES = {
         "This game contains horror themes,",
         "unsettling sounds, and sudden events.",
-        "Play somewhere quiet. Headphones recommended.",
-        "You can turn events down in the config at any time.",
+        "Loud static and screams can play without warning.",
+        "Play somewhere quiet and start with the volume low.",
+        "You can turn events and sound down in the config at any time.",
+        "It may leave harmless text files on your desktop (see the config).",
         "It already knows you are here."
     };
     private static final long LINE_DELAY = 1100L;

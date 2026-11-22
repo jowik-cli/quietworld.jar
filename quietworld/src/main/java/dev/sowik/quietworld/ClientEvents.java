@@ -1,5 +1,7 @@
 package dev.sowik.quietworld;
 
+import net.minecraft.client.gui.screens.PauseScreen;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.TitleScreen;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.ScreenEvent;
@@ -12,10 +14,22 @@ public class ClientEvents {
 
     @SubscribeEvent
     public static void onScreenOpening(ScreenEvent.Opening event) {
-        if (shown || !Config.SHOW_WARNING.get()) return;
-        if (event.getNewScreen() instanceof TitleScreen) {
-            shown = true;
-            event.setNewScreen(new WarningScreen(event.getNewScreen()));
+        Screen next = event.getNewScreen();
+        boolean custom = Config.CUSTOM_MENUS.get();
+
+        if (next instanceof TitleScreen) {
+            Screen target = custom ? new QuietTitleScreen() : next;
+            if (!shown && Config.SHOW_WARNING.get()) {
+                shown = true;
+                event.setNewScreen(new WarningScreen(target));
+            } else {
+                shown = true;
+                if (custom) {
+                    event.setNewScreen(target);
+                }
+            }
+        } else if (next instanceof PauseScreen && custom) {
+            event.setNewScreen(new QuietPauseScreen());
         }
     }
 }

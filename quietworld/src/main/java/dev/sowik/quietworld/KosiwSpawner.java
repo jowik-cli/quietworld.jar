@@ -47,6 +47,7 @@ public final class KosiwSpawner {
 
         p.sendSystemMessage(Component.translatable("multiplayer.player.joined", Component.literal(KosiwEntity.NAME))
                 .withStyle(ChatFormatting.YELLOW));
+        Sfx.at(p, ModSounds.STATIC_BURST, 0.4F, 1.3F);
         return true;
     }
 }

@@ -19,39 +19,6 @@ import net.minecraft.world.level.levelgen.Heightmap;
 public final class Rituals {
     private Rituals() {}
 
-    /**
-     * Builds a ritual site min..max blocks from the player (centered in a chunk so it never straddles one).
-     * Returns the center, or null if no suitable spot was found or the per-player limit was reached.
-     */
-    public static BlockPos spawnNear(ServerPlayer p, int minDist, int maxDist, boolean force) {
-        ServerLevel level = (ServerLevel) p.level();
-        if (level.dimension() != Level.OVERWORLD) return null;
-
-        StoryState state = StoryState.of(p);
-        if (!force && state.ritualCount() >= Config.MAX_RITUALS.get()) return null;
-
-        RandomSource rnd = p.getRandom();
-        for (int attempt = 0; attempt < 6; attempt++) {
-            double angle = rnd.nextDouble() * Math.PI * 2.0D;
-            double dist = minDist + rnd.nextInt(Math.max(1, maxDist - minDist));
-            int cx = Mth.floor(p.getX() + Math.cos(angle) * dist) >> 4;
-            int cz = Mth.floor(p.getZ() + Math.sin(angle) * dist) >> 4;
-            int x = cx * 16 + 8;
-            int z = cz * 16 + 8;
-
-            level.getChunk(cx, cz); // loads or generates the chunk first
-            int y = level.getHeight(Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, x, z);
-            BlockPos center = new BlockPos(x, y, z);
-            if (!level.getFluidState(center.below()).isEmpty()) continue;
-            if (y <= level.getSeaLevel()) continue;
-
-            build(level, center, rnd.nextInt(3), rnd);
-            state.setRitualCount(state.ritualCount() + 1);
-            return center;
-        }
-        return null;
-    }
-
     public static void build(ServerLevel level, BlockPos c, int variant, RandomSource rnd) {
         prepare(level, c, 6.0D, rnd);
         switch (variant) {
@@ -67,12 +34,12 @@ public final class Rituals {
         }
     }
 
-    private static void set(ServerLevel level, BlockPos pos, BlockState state) {
+    static void set(ServerLevel level, BlockPos pos, BlockState state) {
         level.setBlock(pos, state, 2);
     }
 
     /** Clears the space above and lays a bare, wrong-colored floor. */
-    private static void prepare(ServerLevel level, BlockPos c, double radius, RandomSource rnd) {
+    static void prepare(ServerLevel level, BlockPos c, double radius, RandomSource rnd) {
         int r = (int) Math.ceil(radius);
         BlockState air = Blocks.AIR.defaultBlockState();
         for (int dx = -r; dx <= r; dx++) {
@@ -94,12 +61,12 @@ public final class Rituals {
         }
     }
 
-    private static BlockState skull(boolean wither, RandomSource rnd) {
+    static BlockState skull(boolean wither, RandomSource rnd) {
         BlockState base = wither ? Blocks.WITHER_SKELETON_SKULL.defaultBlockState() : Blocks.SKELETON_SKULL.defaultBlockState();
         return base.setValue(SkullBlock.ROTATION, rnd.nextInt(16));
     }
 
-    private static BlockState candle(boolean red, RandomSource rnd) {
+    static BlockState candle(boolean red, RandomSource rnd) {
         BlockState base = red ? Blocks.RED_CANDLE.defaultBlockState() : Blocks.WHITE_CANDLE.defaultBlockState();
         return base.setValue(CandleBlock.CANDLES, 1 + rnd.nextInt(3)).setValue(CandleBlock.LIT, true);
     }

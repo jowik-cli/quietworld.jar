@@ -46,6 +46,7 @@ public class WatcherEntity extends PathfinderMob {
     public void tick() {
         super.tick();
         if (this.level().isClientSide) return;
+        Codex.encounter(this, "mob_watcher");
 
         life++;
         Player nearest = this.level().getNearestPlayer(this, 80.0D);

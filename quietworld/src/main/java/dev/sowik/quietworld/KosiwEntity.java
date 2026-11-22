@@ -88,6 +88,7 @@ public class KosiwEntity extends PathfinderMob {
     public void tick() {
         super.tick();
         if (this.level().isClientSide) return;
+        Codex.encounter(this, "mob_kosiw");
 
         life++;
         Player nearest = this.level().getNearestPlayer(this, 128.0D);
@@ -152,7 +153,7 @@ public class KosiwEntity extends PathfinderMob {
 
     /** A paper whose name is the coordinates of a freshly built ritual site. Null if no site could be built. */
     private ItemStack coordinatePaper(ServerPlayer player) {
-        BlockPos pos = Rituals.spawnNear(player, 130, 260, false);
+        BlockPos pos = Structures.spawnNear(player, 130, 260, false);
         if (pos == null) return null;
         ItemStack paper = new ItemStack(Items.PAPER);
         paper.setHoverName(Component.literal("X: " + pos.getX() + "  Y: " + pos.getY() + "  Z: " + pos.getZ()));

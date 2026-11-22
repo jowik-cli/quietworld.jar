@@ -29,6 +29,18 @@ public final class Dialogue {
         new Topic("watcher", "What is the tall one?", new String[]{"tall", "watcher", "figure", "thing", "stands", "staring", "stare", "watching"},
             List.of("The tall one? It is not mine.", "It only looks. Do not give it a reason to do more."),
             List.of("It stopped leaving. You noticed too.", "It has your walk now.")),
+        new Topic("herobrine", "Is Herobrine around?", new String[]{"herobrine", "brine"},
+            List.of("Herobrine? He quit.", "Creative differences. He wanted more fog, the Watcher wanted more standing."),
+            List.of("He left a sign that said brb.", "That was a long time ago. Do not make it say that again.")),
+        new Topic("mods", "Are there other horror mods here?", new String[]{"mod", "mods", "modpack", "jar", "wonderland", "script", "slenderman", "backrooms", "null", "dweller", "entity", "303"},
+            List.of("Other horror mods? We are not in competition.", "They have bigger budgets. We have a very tall man."),
+            List.of("Do not say their names in here. The Watcher is a stickler about trademarks.", "wonderland.jar sends its regards. It has its own door.")),
+        new Topic("hall", "What is the Static Hall?", new String[]{"hall", "static", "backrooms", "rooms"},
+            List.of("A room it keeps for people it has finished with.", "The door is always in the farthest corner."),
+            List.of("It is not a room. It is the inside of the signal.", "Do not follow the sound.")),
+        new Topic("hollow", "What are the hollow ones?", new String[]{"hollow", "hollows", "statue", "statues", "moves", "moving"},
+            List.of("They move when you look away.", "So do not look away."),
+            List.of("They were people. Watch where they stand when you blink.")),
         new Topic("leave", "How do I leave?", new String[]{"leave", "escape", "exit", "out of", "get out", "go home"},
             List.of("People do not leave a place like this.", "They stop loading it. That is the only way I know."),
             List.of("There is a door. It is a picture of a door.", "Do not knock.")),
@@ -60,6 +72,10 @@ public final class Dialogue {
 
     public static boolean kosiwNear(ServerPlayer p, double radius) {
         return !p.level().getEntitiesOfClass(KosiwEntity.class, p.getBoundingBox().inflate(radius)).isEmpty();
+    }
+
+    public static void sayAs(ServerPlayer p, String who, String text) {
+        p.sendSystemMessage(Component.literal("<" + who + "> " + text));
     }
 
     public static void say(ServerPlayer p, String text) {

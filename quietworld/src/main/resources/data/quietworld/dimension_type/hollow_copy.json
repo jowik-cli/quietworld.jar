@@ -12,7 +12,7 @@
   "has_raids": false,
   "logical_height": 384,
   "min_y": -64,
-  "height": 384,
+  "height": -10,
   "infiniburn": "#minecraft:infiniburn_overworld",
   "effects": "minecraft:overworld",
   "monster_spawn_light_level": 0,
